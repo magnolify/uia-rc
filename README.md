@@ -1,78 +1,104 @@
-# Shopify App Template - Extension only
+# 🔥 UNDER IT ALL: Report Cards Printer 🔥
 
-This is a template for building an [extension-only Shopify app](https://shopify.dev/docs/apps/build/app-extensions/build-extension-only-app). It contains the basics for building a Shopify app that uses only app extensions.
+> A bespoke Shopify Admin Extension to generate and print line-item report cards, crafted with precision by Responsive Web Solutions.
 
-This template doesn't include a server or the ability to embed a page in the Shopify Admin. If you want either of these capabilities, choose the [Remix app template](https://github.com/Shopify/shopify-app-template-remix) instead.
+---
 
-Whether you choose to use this template or another one, you can use your preferred package manager and the Shopify CLI with [these steps](#installing-the-template).
+## 🎯 The Mission
 
-## Benefits
+Client **UNDER IT ALL** needed a way to streamline their order fulfillment process. The goal was to eliminate manual data entry by creating a tool that could instantly generate custom printable labels—or "Report Cards"—for each line item directly from the Shopify order page.
 
-Shopify apps are built on a variety of Shopify tools to create a great merchant experience. The [create an app](https://shopify.dev/docs/apps/getting-started/create) tutorial in our developer documentation will guide you through creating a Shopify app.
+## ✨ The Solution
 
-This app template does little more than install the CLI and scaffold a repository.
+We engineered a slick, lightweight **Shopify Admin UI Extension** that integrates flawlessly into the native Shopify workflow. With a single click from the "Print" menu, staff can now fire up a modal, get a live preview, and print beautiful, data-rich labels for every item in an order.
 
-## Getting started
+This isn't just an app; it's a workflow revolution, powered by a serverless backend for maximum speed and security.
 
-### Requirements
+## 🚀 Core Stack
 
-1. You must [download and install Node.js](https://nodejs.org/en/download/) if you don't already have it.
-1. You must [create a Shopify partner account](https://partners.shopify.com/signup) if you don’t have one.
-1. You must create a store for testing if you don't have one, either a [development store](https://help.shopify.com/en/partners/dashboard/development-stores#create-a-development-store) or a [Shopify Plus sandbox store](https://help.shopify.com/en/partners/dashboard/managing-stores/plus-sandbox-store).
+- **Shopify UI Extension:** For a seamless frontend experience inside the admin.
+- **Preact:** For a lightweight, high-performance UI component.
+- **Cloudflare Worker:** As the serverless backend function handling API requests.
+- **Shopify Admin API:** The source of truth for all order data.
+- **Shopify CLI:** For a world-class development and deployment workflow.
 
-### Installing the template
+## 🛠️ Ignition Sequence: Getting Started
 
-This template can be installed using your preferred package manager:
+### 1. System Prerequisites
 
-Using yarn:
-
-```shell
-yarn create @shopify/app
-```
-
-Using npm:
-
-```shell
-npm init @shopify/app@latest
-```
-
-Using pnpm:
-
-```shell
-pnpm create @shopify/app@latest
-```
-
-This will clone the template and install the required dependencies.
-
-#### Local Development
-
-[The Shopify CLI](https://shopify.dev/docs/apps/tools/cli) connects to an app in your Partners dashboard. It provides environment variables and runs commands in parallel.
-
-You can develop locally using your preferred package manager. Run one of the following commands from the root of your app.
-
-Using yarn:
-
-```shell
-yarn dev
-```
-
-Using npm:
-
-```shell
-npm run dev
-```
-
-Using pnpm:
-
-```shell
-pnpm run dev
-```
-
-Open the URL generated in your console. Once you grant permission to the app, you can start development (such as generating extensions).
-
-## Developer resources
-
-- [Introduction to Shopify apps](https://shopify.dev/docs/apps/getting-started)
-- [App extensions](https://shopify.dev/docs/apps/build/app-extensions)
-- [Extension only apps](https://shopify.dev/docs/apps/build/app-extensions/build-extension-only-app)
+Ensure you have the essentials installed:
+- [Node.js](https://nodejs.org/en/download/) (LTS)
 - [Shopify CLI](https://shopify.dev/docs/apps/tools/cli)
+
+### 2. Clone & Install
+
+Get the code and install dependencies.
+
+```bash
+# Clone the repository
+git clone <your-repo-url>
+cd underitall-report-cards
+
+# Install dependencies
+npm install
+```
+
+### 3. Configure Your Environment
+
+This project uses a `.env` file for all your secrets. Create it in the project root.
+
+**File: `.env`**
+```env
+# Your Shopify Store
+SHOPIFY_STORE_DOMAIN="underitall-2.myshopify.com"
+
+# Your Custom App Credentials
+SHOPIFY_API_KEY="your-app-api-key"
+SHOPIFY_API_SECRET="your-app-api-secret"
+
+# The Holy Grail: Your Admin API Access Token
+SHOPIFY_ACCESS_TOKEN="shpat_..."
+
+# API Scopes
+SCOPES="read_orders,read_customers,read_products,read_fulfillments,read_inventory"
+```
+
+> **Where to find credentials?** Create a **Custom App** in your Shopify Partner account, set the **API Scopes**, and install it on your dev store. You'll find the keys and the all-important **Admin API Access Token** in the "API credentials" tab.
+
+## 💻 Development Mode
+
+Spin up the development server with one command:
+
+```bash
+shopify app dev
+```
+
+The CLI will give you a preview link to test your extension live. Changes to your code will hot-reload automatically. ✨
+
+> **Stuck?** If the CLI ever feels confused about your app configuration, a quick `--reset` will set it straight:
+> `shopify app dev --reset`
+
+## 🚀 Go Live: Deployment
+
+Ready to ship it? Deploy your extension to Shopify with:
+
+```bash
+shopify app deploy
+```
+
+This command bundles and pushes your work to your live app in the Shopify Partner Dashboard.
+
+## 📂 Code Blueprint
+
+- `shopify.app.toml`: The master plan for your app.
+- `.env`: Your secret stash. Don't commit it!
+- `package.json`: The list of dependencies and scripts.
+- `/extensions/report-cards/`: The heart of the UI extension.
+  - `src/PrintActionExtension.jsx`: The Preact component that merchants see.
+  - `shopify.extension.toml`: The extension's configuration file.
+- `/functions/`: The serverless backend.
+  - `print-report-card.js`: The Cloudflare Worker that does the heavy lifting: fetching data and rendering HTML.
+
+---
+
+*Built with ❤️ by **Responsive Web Solutions** for **UNDER IT ALL**.*

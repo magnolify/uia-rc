@@ -1,8 +1,8 @@
 # Learn more about configuring your app at https://shopify.dev/docs/apps/tools/cli/configuration
 
-client_id = "51a0ed6bbc55b7564582f1c1a0a922d7"
+client_id = "d9a325ba69ac05fa1c2c59b7c794917b"
 name = "under-it-all-report-cards"
-application_url = "https://shopify.dev/apps/default-app-home"
+application_url = "https://example.com/"
 embedded = true
 
 [build]
@@ -10,11 +10,11 @@ automatically_update_urls_on_dev = true
 include_config_on_deploy = true
 
 [webhooks]
-api_version = "2026-01"
+api_version = "2025-10"
 
 [access_scopes]
 # Learn more at https://shopify.dev/docs/apps/tools/cli/configuration#access_scopes
-scopes = ""
+scopes = "read_customers,read_fulfillments,read_inventory,read_orders,read_products"
 
 [auth]
-redirect_urls = [ "https://shopify.dev/apps/default-app-home/api/auth" ]
+redirect_urls = [ "https://example.com/api/auth" ]
